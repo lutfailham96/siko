@@ -1,0 +1,199 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Produk{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Produk
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ url_for('r_dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Produk</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-header">
+                <button id="add-product" type="button" class="btn btn-success col-sm-1 pull-left">
+                    <i class="fa fa-plus"></i>
+                    Tambah
+                </button>
+            </div>
+            <div class="box-body table-responsive">
+                <table id="table-product" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Kode Produk</th>
+                        <th>Nama Produk</th>
+                        <th>Kategori</th>
+                        <th>Harga Modal</th>
+                        <th>Harga Jual</th>
+                        <th>Stok</th>
+                        <th style="width: 100px;">Aksi</th>
+                    </tr>
+                    </thead>
+                    <tbody id="product-data">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="modal-product_add">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">
+                            <i class="fa fa-plus-circle"></i>
+                            Tambah Produk
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box box-info">
+                            <!-- form start -->
+                            <form class="form-horizontal">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="product-code" class="col-sm-3 control-label">Kode Produk</label>
+                                        <div class="col-sm-7">
+                                            <input id="product-code" type="text" class="form-control" placeholder="Kode Produk" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product-name" class="col-sm-3 control-label">Nama Produk</label>
+                                        <div class="col-sm-7">
+                                            <input id="product-name" type="text" class="form-control" placeholder="Nama Produk" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="category-code" class="col-sm-3 control-label">Kategori</label>
+                                        <div class="col-sm-7">
+                                            <select id="category-code" class="form-control" required>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product-stock-price" class="col-sm-3 control-label">Harga Modal</label>
+                                        <div class="col-sm-7">
+                                            <input id="product-stock-price" type="number" class="form-control" placeholder="Harga Modal" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product-price" class="col-sm-3 control-label">Harga Jual</label>
+                                        <div class="col-sm-7">
+                                            <input id="product-price" type="number" class="form-control" placeholder="Harga Jual" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product-stock" class="col-sm-3 control-label">Stok</label>
+                                        <div class="col-sm-7">
+                                            <input id="product-stock" type="number" class="form-control" placeholder="Stok" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">
+                            <i class="fa fa-undo"></i>
+                            Batal
+                        </button>
+                        <button id="product-btn_add" type="button" class="btn btn-primary">
+                            <i class="fa fa-save"></i>
+                            Tambah
+                        </button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="modal-product_update">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">
+                            <i class="fa fa-pencil"></i>
+                            Edit Produk
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box box-info">
+                            <!-- form start -->
+                            <form class="form-horizontal">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="product-code2" class="col-sm-3 control-label">Kode Produk</label>
+                                        <div class="col-sm-7">
+                                            <input id="product-code2" type="text" class="form-control" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product-name2" class="col-sm-3 control-label">Nama Produk</label>
+                                        <div class="col-sm-7">
+                                            <input id="product-name2" type="text" class="form-control" placeholder="Nama Produk" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="category-code2" class="col-sm-3 control-label">Kategori</label>
+                                        <div class="col-sm-7">
+                                            <select id="category-code2" class="form-control" required>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product-stock-price2" class="col-sm-3 control-label">Harga Modal</label>
+                                        <div class="col-sm-7">
+                                            <input id="product-stock-price2" type="number" class="form-control" placeholder="Harga Modal" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product-price2" class="col-sm-3 control-label">Harga Jual</label>
+                                        <div class="col-sm-7">
+                                            <input id="product-price2" type="number" class="form-control" placeholder="Harga Jual" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product-stock2" class="col-sm-3 control-label">Stok</label>
+                                        <div class="col-sm-7">
+                                            <input id="product-stock2" type="number" class="form-control" placeholder="Stok" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">
+                            <i class="fa fa-undo"></i>
+                            Batal
+                        </button>
+                        <button id="product-btn_update" type="button" class="btn btn-primary">
+                            <i class="fa fa-save"></i>
+                            Simpan
+                        </button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    </section>
+    <!-- /.content -->
+{% endblock %}

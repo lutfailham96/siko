@@ -1,0 +1,110 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Dashboard
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ url_for('r_dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box-body" style="margin: 10px auto;">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-4 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-aqua">
+                        <div class="inner">
+                            <h3>{{ data.product_total }}</h3>
+                            <p>Produk</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="{{ url_for('r_product') }}" class="small-box-footer">Info lengkap <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <h3>{{ data.category_total }}</h3>
+                            <p>Kategori</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-th"></i>
+                        </div>
+                        <a href="{{ url_for('r_category') }}" class="small-box-footer">Info lengkap <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <h3>{{ data.stock_total }}</h3>
+                            <p>Stok Barang</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-archive"></i>
+                        </div>
+                        <a href="{{ url_for('r_product') }}" class="small-box-footer">Info lengkap <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-green">
+                        <div class="inner">
+                            <h3>{{ data.transaction_total }}</h3>
+                            <p>Transaksi</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-dollar"></i>
+                        </div>
+                        <a href="{{ url_for('r_transaction') }}" class="small-box-footer">Info lengkap <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-xs-12">
+                    <!-- small box -->
+                    <div class="small-box bg-purple">
+                        <div class="inner">
+                            <p class="text-center">Laporan</p>
+                            <p class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="dashboard-date">
+                                    <span class="input-group-btn">
+                                        <button id="dashboard-submit" type="submit" class="btn btn-primary">
+                                            <i class="fa fa-arrow-right"></i>
+                                            OK
+                                        </button>
+                                    </span>
+                                </div>
+                                <!-- /.input group -->
+                            </p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-clipboard"></i>
+                        </div>
+                        <a href="{{ url_for('r_report') }}" class="small-box-footer">Info lengkap <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+{% endblock %}

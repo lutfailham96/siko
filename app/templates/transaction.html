@@ -1,0 +1,77 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Transaksi{% endblock %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Transaksi
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ url_for('r_dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Transaksi</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <form class="form-horizontal col-sm-6 col-sm-offset-3">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="transaction-product-code" class="col-sm-3 control-label">Produk</label>
+                            <div class="col-sm-7">
+                                <select id="transaction-product-code" class="form-control select2" style="width: 100%;">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="transaction-count" class="col-sm-3 control-label">Jumlah</label>
+                            <div class="col-sm-7">
+                                <input id="transaction-count" type="number" class="form-control" value="0">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="transaction-sold" class="col-sm-3 control-label">Jenis Transaksi</label>
+                            <div class="col-sm-7">
+                                <select id="transaction-type" class="form-control">
+                                    <option value="1">Keluar</option>
+                                    <option value="0">Masuk</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4 col-sm-offset-3" style="margin-top: 15px;">
+                                <button id="transaction-save" type="button" class="btn btn-primary">
+                                    <i class="fa fa-save"></i>
+                                    Simpan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="box-body table-responsive">
+                <table id="table-transaction" class="table table-bordered table-striped">
+                    <thead>
+                    <tr role="row">
+                        <th>#</th>
+                        <th>Kode Produk</th>
+                        <th>Nama Produk</th>
+                        <th>Jumlah</th>
+                        <th>Jenis Transaksi</th>
+                        <th>Tanggal</th>
+                    </tr>
+                    </thead>
+                    <tbody id="transaction-data">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Form -->
+        <div class="box-body col-sm-offset-2 col-sm-6">
+        </div>
+        <!-- form -->
+    </section>
+    <!-- /.content -->
+{% endblock %}
